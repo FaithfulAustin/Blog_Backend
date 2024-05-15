@@ -61,7 +61,7 @@ export default class AuthService {
   }
   
   public async verify(token: string) {
-  const email: string = Jwt.verifyJwt(token)
+  const {value:email} = Jwt.verifyJwt(token)
   const account = await this.findByEmail(email);
   if (!account) throw new HttpException(StatusCodes.NOT_FOUND, "account not found");
   if (account.isVerified) throw new HttpException(StatusCodes.NOT_ACCEPTABLE, "user is already verified");

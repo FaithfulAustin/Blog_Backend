@@ -18,8 +18,6 @@ export class Server {
             next();
         });
         this.app.use(express.json())
-        
-
         this.app.use('/auth', authRouter)
         this.app.use('/Category', categoryRouter)
 

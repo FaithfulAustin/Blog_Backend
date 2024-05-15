@@ -66,13 +66,15 @@ export default class AuthController {
         next: NextFunction
     ) => {
         try {
-            const { token } = request.query as unknown as { token: string }
-            const accessToken = await this.authServices.verify(token)
+            const token = request.headers.authorization
+            if (!token) throw new HttpException(StatusCodes.BAD_REQUEST, "Authorization header needed")
+            const splitToken = token?.split(' ')
+            if (!splitToken[1]) throw new HttpException(StatusCodes.BAD_REQUEST, "input Token")
+            const accessToken = await this.authServices.verify(splitToken[1])
             return response.status(StatusCodes.OK).send(new HttpResponse("success", "account authenticated", { token: accessToken }))
         } catch (err: unknown) {
             next(err)
         }
     };
-
 
 }
