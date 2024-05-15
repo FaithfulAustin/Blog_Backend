@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "ES2017",
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "rootDir": "./src",
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "moduleResolution": "Node10"
+    }
+}
