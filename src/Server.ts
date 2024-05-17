@@ -3,6 +3,7 @@ import { Route } from "./api/Interface/route.interface";
 import { connectDB } from ".";
 import authRouter from "./api/route/AuthRoute";
 import categoryRouter from "./api/route/CategoryRoute";
+import UserRoute from "./api/route/UserRoute";
 
 const port = 3000;
 
@@ -19,6 +20,7 @@ export class Server {
         });
         this.app.use(express.json())
         this.app.use('/auth', authRouter)
+        this.app.use('/user',UserRoute)
         this.app.use('/Category', categoryRouter)
 
         

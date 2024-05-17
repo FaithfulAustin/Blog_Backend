@@ -3,7 +3,7 @@ import mongoose, { Schema, Types } from 'mongoose';
 import category from '../Interface/Category.interface'
 
 const CategorySchema: Schema<category> = new Schema({
-    name: { type: String, required: true},
+    categoryName: { type: String, required: true},
     posts:[
         {
             type: mongoose.Schema.Types.ObjectId,

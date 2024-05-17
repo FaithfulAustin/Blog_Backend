@@ -13,6 +13,10 @@ const userSchema = new Schema<User>({
         type: String,
         required: false,
     },
+    bio: {
+        type: String,
+        required: false,
+    },
     profile_pic: {
         type: String,
         required: false
@@ -35,10 +39,22 @@ const userSchema = new Schema<User>({
         required: true,
         unique: true,
     },
+    following: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
+    followers: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
     category: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Review",
+            ref: "Category",
         },
     ],
 })

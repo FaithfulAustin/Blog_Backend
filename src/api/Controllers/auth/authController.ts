@@ -66,7 +66,7 @@ export default class AuthController {
         next: NextFunction
     ) => {
         try {
-            const token = request.headers.authorization
+           const token = request.headers.authorization
             if (!token) throw new HttpException(StatusCodes.BAD_REQUEST, "Authorization header needed")
             const splitToken = token?.split(' ')
             if (!splitToken[1]) throw new HttpException(StatusCodes.BAD_REQUEST, "input Token")
@@ -74,7 +74,7 @@ export default class AuthController {
             return response.status(StatusCodes.OK).send(new HttpResponse("success", "account authenticated", { token: accessToken }))
         } catch (err: unknown) {
             next(err)
-        }
+        }       
     };
 
 }

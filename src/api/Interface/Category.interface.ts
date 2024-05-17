@@ -5,7 +5,7 @@ type category =
     | 'IT'
 
 export default interface Category {
-    name: category;
+    categoryName: string;
     posts:string[];
 
 }

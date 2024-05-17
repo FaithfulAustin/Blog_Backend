@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import CategoryService from "../../Services/CategoryService";
 import { StatusCodes } from "http-status-codes";
 import HttpResponse from "../../response/HttpResponse";
+import {categoryDto} from "../../dto/CategoryDto"
 
 
 export default class categoryController{
@@ -37,11 +38,11 @@ export default class categoryController{
         next: NextFunction
     ) => {
         try {
-            const user = request
-            const data = await this.categoryService.getCategory()
+            const categoryName: categoryDto = request.body
+            const data = await this.categoryService.addCategory(categoryName)
             return response 
                 .status(StatusCodes.OK)
-                .send(new HttpResponse("success", "Address retrieved", data));
+                .send(new HttpResponse("success", "Category Added", data));
         
 
         } catch (err: unknown) {
