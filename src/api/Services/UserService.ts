@@ -5,6 +5,7 @@ import HttpException from "../error/HttpException";
 import Jwt from "../Utills/jwt";
 import { categoryUserDto } from "../dto/CategoryDto"
 import Category from "../Modal/Category";
+import { userDto } from "../dto/UserDto";
 
 
 export default class UserService {
@@ -17,12 +18,19 @@ export default class UserService {
     //         return user;
     //     }
 
-    public async getUserProfile(email: string) {
+    public async getUserProfile(email: string ) {
 
-        const account = await this.user.findOne({ email });
-        if (!account) throw new HttpException(StatusCodes.NOT_FOUND, "account not found");
-        // const account = await this.user.findOne({ email })
+        const account = await this.findByEmail(email);
         return account;
+    }
+
+    public async updateUserProfile(email: string , update:userDto) {
+
+        const account = await this.findByEmail(email);
+        const data = await this.user.findByIdAndUpdate(account.id,update, { new: true })
+        if (!data) throw new HttpException(StatusCodes.INTERNAL_SERVER_ERROR, "an error occurred when updating the account");
+
+        return data;
     }
 
     public async addCategoriesToUser(Categories: categoryUserDto, email: string) {

@@ -4,6 +4,7 @@ import HttpException from "../../error/HttpException";
 import { StatusCodes } from "http-status-codes";
 import HttpResponse from "../../response/HttpResponse";
 import { categoryUserDto } from "../../dto/CategoryDto"
+import { userDto } from "../../dto/UserDto";
 
 
 export default class UserController {
@@ -23,6 +24,24 @@ export default class UserController {
         try {
             const email = request.userAuth
             const account = await this.userService.getUserProfile(email)
+            return response.status(StatusCodes.OK).send(new HttpResponse("success", "account authenticated", { User: account }))
+
+        }
+        catch (err: unknown) {
+            next(err);
+        }
+    }
+
+    public UpdateUserProfile = async (
+        request: Request,
+        response: Response,
+        next: NextFunction
+    ) => {
+
+        try {
+            const email = request.userAuth
+            const update: userDto = request.body
+            const account = await this.userService.updateUserProfile(email,update)
             return response.status(StatusCodes.OK).send(new HttpResponse("success", "account authenticated", { User: account }))
 
         }

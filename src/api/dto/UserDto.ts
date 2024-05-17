@@ -8,6 +8,7 @@ export class userDto {
     @IsNotEmpty()
     @IsString()
     last_name!: string;
-    
-
+    @IsNotEmpty()
+    @IsString()
+    bio!: string;
 }
