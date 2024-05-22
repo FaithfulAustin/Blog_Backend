@@ -9,6 +9,7 @@ const UserRouter = Router();
 UserRouter.get('/userProfile',JWTVaildator.isLoggedIn,UserController.getUserProfile)
 UserRouter.post('/addCategoriesToUser',JWTVaildator.isLoggedIn,UserController.addCategoriesToUser)
 UserRouter.post('/followAUser/:id',JWTVaildator.isLoggedIn,UserController.followAUser)
+UserRouter.post('/unFollowAUser/:id',JWTVaildator.isLoggedIn,UserController.unFollowAUser)
 UserRouter.post('/UpdateUserProfile',JWTVaildator.isLoggedIn,UserController.UpdateUserProfile)
 UserRouter.get('/viewUser/:id',JWTVaildator.isLoggedIn,UserController.viewAUserDetails)
 UserRouter.get('/allUsers',JWTVaildator.isLoggedIn,UserController.getListOfUsers)
