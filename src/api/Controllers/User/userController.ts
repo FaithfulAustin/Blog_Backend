@@ -121,7 +121,25 @@ export default class UserController {
         }
     }
 
+    public unFollowAUser = async (
+        request: Request,
+        response: Response,
+        next: NextFunction
+    ) => {
 
+        try {
+
+            const Id = request.params.id as string;
+            const email = request.userAuth
+
+            const data = await this.userService.unfollowAUser(Id,email)           
+            return response.status(StatusCodes.OK).send(new HttpResponse("success", "User: ", data))
+ 
+
+        }    catch (err: unknown) {
+            next(err);
+        }
+    }
 
 
 
