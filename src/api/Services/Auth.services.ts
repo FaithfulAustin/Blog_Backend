@@ -11,16 +11,18 @@ export default class AuthService {
 
   public async getPassword({ email }: { email: string }) {
 
-    const findByEmail = await this.findByEmail(email)
+    const account = await this.findByEmail(email)
     let message = '';
-
-    //NEW USERS
-    if (!findByEmail) {
-      message += "Welcome 🤗!!"
-    } else {
-      message += "Welcome back!!"
-    }
-    const password = await generatePassword(email, message)
+    
+  //NEW USERS
+  if (!account){
+  message += "Welcome 🤗!!"
+  }else{
+  message += "Welcome back!!"
+account.isNew = false
+account.save()
+  }
+ const password = await generatePassword(email,message)
 
     //Saving the otp to the database
     // const generatedOTP = await OTPModel.create(email , otp );
@@ -28,6 +30,8 @@ export default class AuthService {
 
     return { password }
   }
+
+
 
   public async passwordVerification({ password, email }: { password: string, email: string }) {
 

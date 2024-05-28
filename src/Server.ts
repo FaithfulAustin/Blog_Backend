@@ -46,12 +46,7 @@ export class Server {
         this.app.use(express.urlencoded({ extended: true }));
     }
 
-
-
-   private async DBconnection() {
-        connectDB()
-    }
-  
+   private async DBconnection() { connectDB() }
 }
 
 

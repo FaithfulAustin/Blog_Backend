@@ -1,8 +1,19 @@
 import nodemailer from 'nodemailer'
+import generator from 'generate-password'
 
 
 export const generatePassword = async (email:string,message:string)  => {
-    const generatedPassword = Math.floor(100000 + Math.random() * 900000);
+
+
+    // const generatedPassword = Math.floor(100000 + Math.random() * 900000);
+    // var generator = require('generate-password');
+
+    const generatedPassword= generator.generate({
+        length: 15,
+        numbers: true,
+        symbols: true,
+        // strict: true,
+    });
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
