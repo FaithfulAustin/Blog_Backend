@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "3305e433-63c9-4d0a-9942-f1df47a4b4f4",
+		"name": "Blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21816365"
+	},
+	"item": [
+		{
+			"name": "getPassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"justbeingmeandunknown@gmail.com\"\r\n    \r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/getPassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"getPassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verifyPassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"justbeingmeandunknown@gmail.com\",\r\n    \"password\":\"209717\"\r\n    \r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/verifyPassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"verifyPassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify Account",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2YWx1ZSI6Imp1c3RiZWluZ21lYW5kdW5rbm93bkBnbWFpbC5jb20iLCJpYXQiOjE3MTU5Nzc4NzIsImV4cCI6MTcxODU2OTg3Mn0.sZvcCdHo_85BPNlp1oasrDZdBwG8rJR_YbekMQe_gw8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2YWx1ZSI6Im1pc3NmYWlyNDJAZ21haWwuY29tIiwiaWF0IjoxNzE1NDIwMDk5LCJleHAiOjE3MTgwMTIwOTl9.IEFL86Rmps96omhwQPk1ZvxzW9x5MLnwsavtFBZxsS4",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/verifyAccount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"verifyAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2YWx1ZSI6Im1pc3NmYWlyNDJAZ21haWwuY29tIiwiaWF0IjoxNzE1NDIwMDk5LCJleHAiOjE3MTgwMTIwOTl9.IEFL86Rmps96omhwQPk1ZvxzW9x5MLnwsavtFBZxsS4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\":\"Faithful\",\r\n    \"last_name\":\"Austin-Ilagha\",\r\n    \"bio\":\"It was all fun \"\r\n    \r\n   \r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/UpdateUserProfile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"UpdateUserProfile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add Category to User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2YWx1ZSI6Im1pc3NmYWlyNDJAZ21haWwuY29tIiwiaWF0IjoxNzE1NDIwMDk5LCJleHAiOjE3MTgwMTIwOTl9.IEFL86Rmps96omhwQPk1ZvxzW9x5MLnwsavtFBZxsS4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoriesId\":[\r\n        \"6647334ba3102a947309872f\",\r\n        \"66472f8a5c5600ea6f422175\"\r\n    ]\r\n    \r\n   \r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/addCategoriesToUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"addCategoriesToUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add Category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2YWx1ZSI6Im1pc3NmYWlyNDJAZ21haWwuY29tIiwiaWF0IjoxNzE1NDIwMDk5LCJleHAiOjE3MTgwMTIwOTl9.IEFL86Rmps96omhwQPk1ZvxzW9x5MLnwsavtFBZxsS4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoryName\": \"Music\"\r\n    \r\n\r\n    \r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/Category/addCategory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Category",
+						"addCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "follow A User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2YWx1ZSI6Im1pc3NmYWlyNDJAZ21haWwuY29tIiwiaWF0IjoxNzE1NDIwMDk5LCJleHAiOjE3MTgwMTIwOTl9.IEFL86Rmps96omhwQPk1ZvxzW9x5MLnwsavtFBZxsS4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/followAUser/663e7bd2901eccecbdf4692f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"followAUser",
+						"663e7bd2901eccecbdf4692f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2YWx1ZSI6Im1pc3NmYWlyNDJAZ21haWwuY29tIiwiaWF0IjoxNzE1NDIwMDk5LCJleHAiOjE3MTgwMTIwOTl9.IEFL86Rmps96omhwQPk1ZvxzW9x5MLnwsavtFBZxsS4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/Category/getCategories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Category",
+						"getCategories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listOfUsers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2YWx1ZSI6Im1pc3NmYWlyNDJAZ21haWwuY29tIiwiaWF0IjoxNzE1NDIwMDk5LCJleHAiOjE3MTgwMTIwOTl9.IEFL86Rmps96omhwQPk1ZvxzW9x5MLnwsavtFBZxsS4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/user/allUsers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"allUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2YWx1ZSI6Im1pc3NmYWlyNDJAZ21haWwuY29tIiwiaWF0IjoxNzE1NDIwMDk5LCJleHAiOjE3MTgwMTIwOTl9.IEFL86Rmps96omhwQPk1ZvxzW9x5MLnwsavtFBZxsS4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/user/viewUser/6647be90ff914b6106268559",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"viewUser",
+						"6647be90ff914b6106268559"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2YWx1ZSI6Im1pc3NmYWlyNDJAZ21haWwuY29tIiwiaWF0IjoxNzE1NDIwMDk5LCJleHAiOjE3MTgwMTIwOTl9.IEFL86Rmps96omhwQPk1ZvxzW9x5MLnwsavtFBZxsS4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/user/userProfile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"userProfile"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
