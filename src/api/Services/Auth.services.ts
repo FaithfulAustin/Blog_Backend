@@ -19,8 +19,6 @@ export default class AuthService {
       message += "Welcome 🤗!!"
     } else {
       message += "Welcome back!!"
-      account.isNew = false
-      account.save()
     }
     const password = await generatePassword(email, message)
 
@@ -36,9 +34,9 @@ export default class AuthService {
   public async passwordVerification({ password, email }: { password: string, email: string }) {
 
 
-    const passwordData = await PasswordModel.findOne({ password: password, email });
+    const passwordData = await PasswordModel.findOne({ password, email });
     const findByEmail = await this.findByEmail(email)
-
+    let isNew = false;
 
     if (passwordData) {
 
@@ -46,13 +44,13 @@ export default class AuthService {
       if (!findByEmail) {
         const newAccount = await this.userModel.create({ email, last_auth_type: "native" });
         if (!newAccount) throw new HttpException(StatusCodes.INTERNAL_SERVER_ERROR, "an error occurred");
-
+        isNew = true
       }
       //DELETE Password WHEN VERIFIED
       await PasswordModel.findByIdAndDelete(passwordData._id);
 
       const token = Jwt.signJwt(email, "30d")
-      return { token }
+      return { token, isNew }
     } else {
       throw new HttpException(StatusCodes.NOT_FOUND, "Invalid Password, please resend")
     }
