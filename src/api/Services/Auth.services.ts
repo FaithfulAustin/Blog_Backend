@@ -13,16 +13,16 @@ export default class AuthService {
 
     const account = await this.findByEmail(email)
     let message = '';
-    
-  //NEW USERS
-  if (!account){
-  message += "Welcome 🤗!!"
-  }else{
-  message += "Welcome back!!"
-account.isNew = false
-account.save()
-  }
- const password = await generatePassword(email,message)
+
+    //NEW USERS
+    if (!account) {
+      message += "Welcome 🤗!!"
+    } else {
+      message += "Welcome back!!"
+      account.isNew = false
+      account.save()
+    }
+    const password = await generatePassword(email, message)
 
     //Saving the otp to the database
     // const generatedOTP = await OTPModel.create(email , otp );
