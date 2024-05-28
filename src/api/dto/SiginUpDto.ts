@@ -1,7 +1,7 @@
 import { Trim } from "class-sanitizer";
 import { IsNotEmpty, IsString, MinLength, Validate, IsEmail } from "class-validator";
 
-export class emailDto {
+export class EmailDto {
     @IsString()
     @IsNotEmpty()
     @Trim()
@@ -15,7 +15,7 @@ export class PasswordDto {
     @IsEmail()
     @Trim()
     public email!: string;
-    
+
     @IsNotEmpty()
     public password!: string;
 }

@@ -1,7 +1,7 @@
 import { plainToInstance } from "class-transformer";
 import { ValidationError, validate } from "class-validator";
 import { RequestHandler } from "express";
-import { logger } from "../Utills/logger";
+import { logger } from "../Utils/logger";
 import { sanitize } from "class-sanitizer";
 import HttpException from "../error/HttpException";
 

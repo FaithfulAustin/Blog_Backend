@@ -3,13 +3,13 @@ import { NextFunction, Request, Response } from "express";
 import AuthService from "../../Services/Auth.services";
 import { StatusCodes } from "http-status-codes";
 import HttpResponse from "../../response/HttpResponse";
-import { PasswordDto , emailDto } from "../../dto/SiginUpDto";
+import { PasswordDto, EmailDto } from "../../dto/SiginUpDto";
 import Password from "../../Modal/Password";
 import HttpException from "../../error/HttpException";
 
 
 export default class AuthController {
-    
+
     private readonly authServices: AuthService;
 
     constructor() {
@@ -22,13 +22,13 @@ export default class AuthController {
         next: NextFunction
     ) => {
         try {
-            const emailDto = request.body as emailDto;
+            const emailDto = request.body as EmailDto;
 
             const password = await this.authServices.getPassword(emailDto);
 
 
-// Storing the Password to the DB
-            const generatedPassword = await Password.create({ email:emailDto.email , password:password.password });
+            // Storing the Password to the DB
+            const generatedPassword = await Password.create({ email: emailDto.email, password: password.password });
             if (!generatedPassword) throw new HttpException(StatusCodes.INTERNAL_SERVER_ERROR, "Otp error occurred");
 
             return response
@@ -36,7 +36,7 @@ export default class AuthController {
                     status: "success",
                     message: `Please check your email or sms  for your otp`,
                     otpIdForResendingOtp: generatedPassword._id
-                  });
+                });
         } catch (err: unknown) {
             next(err);
         }
@@ -57,7 +57,7 @@ export default class AuthController {
         } catch (err: unknown) {
             next(err);
         }
-    
+
     }
 
     public verifyAccount = async (
@@ -66,7 +66,7 @@ export default class AuthController {
         next: NextFunction
     ) => {
         try {
-           const token = request.headers.authorization
+            const token = request.headers.authorization
             if (!token) throw new HttpException(StatusCodes.BAD_REQUEST, "Authorization header needed")
             const splitToken = token?.split(' ')
             if (!splitToken[1]) throw new HttpException(StatusCodes.BAD_REQUEST, "input Token")
@@ -74,7 +74,7 @@ export default class AuthController {
             return response.status(StatusCodes.OK).send(new HttpResponse("success", "account authenticated", { token: accessToken }))
         } catch (err: unknown) {
             next(err)
-        }       
+        }
     };
 
 }

@@ -4,7 +4,8 @@ import { connectDB } from ".";
 import authRouter from "./api/route/AuthRoute";
 import categoryRouter from "./api/route/CategoryRoute";
 import UserRoute from "./api/route/UserRoute";
-
+import ErrorMiddleWare from "./api/middleware/error.middleware";
+import cors from "cors"
 const port = 3000;
 
 export class Server {
@@ -12,12 +13,7 @@ export class Server {
     private app = express();
 
     startServer() {
-
-        this.app.use(function (req: Request, res: Response, next: NextFunction) {
-            res.header("Access-Control-Allow-Origin", "http://localhost:5174"); 
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            next();
-        });
+        this.app.use(cors<Request>());
         this.app.use(express.json())
         this.app.use('/auth', authRouter)
         this.app.use('/user',UserRoute)
@@ -25,11 +21,14 @@ export class Server {
 
         
         //this prints the error in the console, rather than in the response!
-        this.app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-            console.error(err.stack)
-            res.send(err.message)
-            next();
-        })
+        // this.app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+        //     console.error(err.stack)
+        //     res.send(err.message)
+        //     next();
+        // })
+
+        this.initializeErrorHandling();
+        this.initializeMiddlewares();
 
         this.app.listen(port, () => {
             this.DBconnection()
@@ -38,17 +37,24 @@ export class Server {
     }
  
 
+    private initializeErrorHandling() {
+        this.app.use(ErrorMiddleWare.handleErrors);
+    }
+
+    private initializeMiddlewares(): void {
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
+    }
+
 
 
    private async DBconnection() {
         connectDB()
     }
-
-
-
   
 }
 
 
 
 new Server().startServer();
+

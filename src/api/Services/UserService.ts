@@ -2,7 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import User from "../Interface/user.Interface";
 import UserModel from "../Modal/UserModel";
 import HttpException from "../error/HttpException";
-import Jwt from "../Utills/jwt";
+import Jwt from "../Utils/jwt";
 import { categoryUserDto } from "../dto/CategoryDto"
 import Category from "../Modal/Category";
 import { userDto } from "../dto/UserDto";
@@ -123,7 +123,7 @@ export default class UserService {
         //User that is abt to be unfollowed
         const User = await this.user.findById(id);
         if (!User) throw new HttpException(StatusCodes.NOT_FOUND, "account to be updated not found");
- 
+
 
         // Get the index of the follower in the follower array 
         const index = User.followers.indexOf(followersId);

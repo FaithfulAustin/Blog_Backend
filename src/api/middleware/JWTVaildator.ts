@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import HttpException from "../error/HttpException";
 import { StatusCodes } from "http-status-codes";
-import Jwt from "../Utills/jwt";
+import Jwt from "../Utils/jwt";
 
 export default class JWTValidator {
 
