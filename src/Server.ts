@@ -40,13 +40,8 @@ export class Server {
 
 
 
-   private async DBconnection() {
-        connectDB()
-    }
+   private async DBconnection() { connectDB() }
 
-
-
-  
 }
 
 

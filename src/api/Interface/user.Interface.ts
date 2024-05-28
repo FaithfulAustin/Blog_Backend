@@ -4,6 +4,7 @@ export default interface User {
     bio: string;
     email: string;
     profile_pic?: string;
+    isNew:boolean;
     isVerified:boolean;
     last_auth_type: "google" | "native";
     reseTokenExpiration:Date;

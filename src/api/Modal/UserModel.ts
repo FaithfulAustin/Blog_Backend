@@ -25,6 +25,10 @@ const userSchema = new Schema<User>({
         type: String,
         required: true
     },
+    isNew: {
+        type: Boolean,
+        default: true,
+    },
     isVerified: {
         type: Boolean,
         default: false

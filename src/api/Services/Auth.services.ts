@@ -11,14 +11,16 @@ export default class AuthService {
 
   public async getPassword({ email }: { email: string }) {
 
-    const findByEmail = await this.findByEmail(email)
+    const account = await this.findByEmail(email)
     let message = '';
     
   //NEW USERS
-  if (!findByEmail){
+  if (!account){
   message += "Welcome 🤗!!"
   }else{
   message += "Welcome back!!"
+account.isNew = false
+account.save()
   }
  const password = await generatePassword(email,message)
 
@@ -28,6 +30,8 @@ export default class AuthService {
 
     return {password}
   }
+
+
 
   public async passwordVerification({ password, email }: { password: string, email: string }) {
 
