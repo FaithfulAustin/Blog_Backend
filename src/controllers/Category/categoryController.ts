@@ -1,16 +1,16 @@
 
 import { NextFunction, Request, Response } from "express";
-import CategoryService from "../../Services/CategoryService";
+import CategoryService from "../../services/CategoryService";
 import { StatusCodes } from "http-status-codes";
 import HttpResponse from "../../response/HttpResponse";
-import {categoryDto} from "../../dto/CategoryDto"
+import { categoryDto } from "../../dto/CategoryDto"
 
 
-export default class categoryController{
-    
-    private readonly categoryService:CategoryService;
+export default class categoryController {
 
-    constructor(){
+    private readonly categoryService: CategoryService;
+
+    constructor() {
         this.categoryService = new CategoryService();
     }
 
@@ -22,10 +22,10 @@ export default class categoryController{
         try {
             const user = request
             const data = await this.categoryService.getCategory()
-            return response 
+            return response
                 .status(StatusCodes.OK)
                 .send(new HttpResponse("success", "Address retrieved", data));
-        
+
 
         } catch (err: unknown) {
             next(err);
@@ -40,10 +40,10 @@ export default class categoryController{
         try {
             const categoryName: categoryDto = request.body
             const data = await this.categoryService.addCategory(categoryName)
-            return response 
+            return response
                 .status(StatusCodes.OK)
                 .send(new HttpResponse("success", "Category Added", data));
-        
+
 
         } catch (err: unknown) {
             next(err);

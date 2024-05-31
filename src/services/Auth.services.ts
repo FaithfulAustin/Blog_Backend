@@ -1,9 +1,9 @@
-import UserModel from "../Modal/UserModel"
+import UserModel from "../model/UserModel"
 import HttpException from "../error/HttpException"
 import { StatusCodes } from "http-status-codes"
-import { generatePassword } from "../Utils/generatePassword"
-import Jwt from "../Utils/jwt"
-import PasswordModel from "../Modal/Password"
+import { generatePassword } from "../utils/generatePassword"
+import Jwt from "../utils/jwt"
+import PasswordModel from "../model/Password"
 //otp
 export default class AuthService {
   private userModel = UserModel
@@ -44,6 +44,10 @@ export default class AuthService {
       if (!findByEmail) {
         const newAccount = await this.userModel.create({ email, last_auth_type: "native" });
         if (!newAccount) throw new HttpException(StatusCodes.INTERNAL_SERVER_ERROR, "an error occurred");
+        isNew = true
+      }
+
+      if (!findByEmail?.first_name) {
         isNew = true
       }
       //DELETE Password WHEN VERIFIED

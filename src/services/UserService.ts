@@ -1,12 +1,12 @@
 import { StatusCodes } from "http-status-codes";
 import User from "../Interface/user.Interface";
-import UserModel from "../Modal/UserModel";
+import UserModel from "../model/UserModel";
 import HttpException from "../error/HttpException";
-import Jwt from "../Utils/jwt";
+import Jwt from "../utils/jwt";
 import { categoryUserDto } from "../dto/CategoryDto"
-import Category from "../Modal/Category";
+import Category from "../model/Category";
 import { userDto } from "../dto/UserDto";
-import category from "../Modal/Category";
+import category from "../model/Category";
 
 
 export default class UserService {

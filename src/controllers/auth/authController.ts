@@ -1,10 +1,10 @@
 
 import { NextFunction, Request, Response } from "express";
-import AuthService from "../../Services/Auth.services";
+import AuthService from "../../services/Auth.services";
 import { StatusCodes } from "http-status-codes";
 import HttpResponse from "../../response/HttpResponse";
 import { PasswordDto, EmailDto } from "../../dto/SiginUpDto";
-import Password from "../../Modal/Password";
+import Password from "../../model/Password";
 import HttpException from "../../error/HttpException";
 
 

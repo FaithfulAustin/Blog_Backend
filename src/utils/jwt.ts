@@ -1,6 +1,6 @@
 
 import jwt , { JwtPayload }  from "jsonwebtoken";
-import { ACCESS_TOKEN } from "../.."
+import { ACCESS_TOKEN } from "../config"
 
 class Jwt {
     public static signJwt(value: string, expiresIn: string | number) {

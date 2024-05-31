@@ -4,7 +4,7 @@ import winston from "winston";
 import {
     LOG_FORMAT,
     LOG_DIR,
-} from "../Config";
+} from "../config";
 import { fileURLToPath } from 'url';
 
 const dir: string = join(__dirname, LOG_DIR!);

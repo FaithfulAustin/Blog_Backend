@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import UserService from "../../Services/UserService";
+import UserService from "../../services/UserService";
 import HttpException from "../../error/HttpException";
 import { StatusCodes } from "http-status-codes";
 import HttpResponse from "../../response/HttpResponse";
@@ -41,7 +41,7 @@ export default class UserController {
         try {
             const email = request.userAuth
             const update: userDto = request.body
-            const account = await this.userService.updateUserProfile(email,update)
+            const account = await this.userService.updateUserProfile(email, update)
             return response.status(StatusCodes.OK).send(new HttpResponse("success", "account authenticated", { User: account }))
 
         }
@@ -68,7 +68,7 @@ export default class UserController {
         }
     }
 
-  
+
     public viewAUserDetails = async (
         request: Request,
         response: Response,
@@ -78,14 +78,14 @@ export default class UserController {
         try {
 
             const userId = request.params.id as string;
-            const data = await this.userService.viewAUserDetails(userId)            
+            const data = await this.userService.viewAUserDetails(userId)
             return response.status(StatusCodes.OK).send(new HttpResponse("success", "User: ", data))
 
-        }    catch (err: unknown) {
+        } catch (err: unknown) {
             next(err);
         }
     }
-  
+
     public getListOfUsers = async (
         request: Request,
         response: Response,
@@ -93,10 +93,10 @@ export default class UserController {
     ) => {
 
         try {
-            const data = await this.userService.getListOfUsers()          
+            const data = await this.userService.getListOfUsers()
             return response.status(StatusCodes.OK).send(new HttpResponse("success", "List of Users", data))
-      
-        }    catch (err: unknown) {
+
+        } catch (err: unknown) {
             next(err);
         }
     }
@@ -112,11 +112,11 @@ export default class UserController {
             const Id = request.params.id as string;
             const email = request.userAuth
 
-            const data = await this.userService.followAUser(Id,email)           
+            const data = await this.userService.followAUser(Id, email)
             return response.status(StatusCodes.OK).send(new HttpResponse("success", "User: ", data))
- 
 
-        }    catch (err: unknown) {
+
+        } catch (err: unknown) {
             next(err);
         }
     }
@@ -132,11 +132,11 @@ export default class UserController {
             const Id = request.params.id as string;
             const email = request.userAuth
 
-            const data = await this.userService.unfollowAUser(Id,email)           
+            const data = await this.userService.unfollowAUser(Id, email)
             return response.status(StatusCodes.OK).send(new HttpResponse("success", "User: ", data))
- 
 
-        }    catch (err: unknown) {
+
+        } catch (err: unknown) {
             next(err);
         }
     }

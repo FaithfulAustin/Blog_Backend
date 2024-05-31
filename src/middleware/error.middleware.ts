@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Interceptor from "./interceptor.middleware";
-import HttpException from "../Utils/exception";
-import { logger } from "../Utils/logger";
+import HttpException from "../utils/exception";
+import { logger } from "../utils/logger";
 
 export default class ErrorMiddleWare extends Interceptor {
 
