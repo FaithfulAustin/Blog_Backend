@@ -13,5 +13,6 @@ export default interface User {
     following: String[];
     followers: String[];
     category:string[];
-
+    username?:string
+    bookmarks: String[];
 }

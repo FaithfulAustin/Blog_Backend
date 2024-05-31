@@ -25,14 +25,6 @@ export async function connectDB() {
 }
 
 
-declare global {
-  namespace Express {
-    interface Request {
-      userAuth: string;
-    }
-  }
-}
-
 // declare module "jsonwebtoken"{
 //   interface JwtPayload {
 //     value: string;

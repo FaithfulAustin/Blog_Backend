@@ -20,7 +20,6 @@ export default class categoryController {
         next: NextFunction
     ) => {
         try {
-            const user = request
             const data = await this.categoryService.getCategory()
             return response
                 .status(StatusCodes.OK)

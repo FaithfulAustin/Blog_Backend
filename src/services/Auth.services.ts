@@ -1,9 +1,9 @@
-import UserModel from "../model/UserModel"
+import UserModel from "../model/user.model"
 import HttpException from "../error/HttpException"
 import { StatusCodes } from "http-status-codes"
 import { generatePassword } from "../utils/generatePassword"
 import Jwt from "../utils/jwt"
-import PasswordModel from "../model/Password"
+import PasswordModel from "../model/password.model"
 //otp
 export default class AuthService {
   private userModel = UserModel

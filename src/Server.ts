@@ -1,16 +1,27 @@
 import express, { NextFunction, Request, Response } from "express"
-import { Route } from "./Interface/route.interface";
+import { Route } from "./interface/route.interface";
 import { connectDB } from ".";
 import authRouter from "./route/AuthRoute";
 import categoryRouter from "./route/CategoryRoute";
 import UserRoute from "./route/UserRoute";
 import ErrorMiddleWare from "./middleware/error.middleware";
 import cors from "cors"
-const port = 3000;
+import { createServer, IncomingMessage, Server, ServerResponse } from "http";
+import createSocket from "./socket";
+import { PORT } from "./config";
 
-export class Server {
+export class App {
 
     private app = express();
+    public port: string | number;
+    private server: Server<typeof IncomingMessage, typeof ServerResponse>;
+
+    constructor() {
+        this.app = express();
+        this.port = PORT || 3000;
+        this.server = createServer(this.app)
+        createSocket(this.server)
+    }
 
     startServer() {
         this.app.use(cors<Request>());
@@ -30,9 +41,9 @@ export class Server {
         this.initializeErrorHandling();
         this.initializeMiddlewares();
 
-        this.app.listen(port, () => {
+        this.server.listen(this.port, () => {
             this.DBconnection()
-            console.log('Listening on port ' + port)
+            console.log('Listening on port ' + this.port)
         })
     }
 
@@ -51,5 +62,5 @@ export class Server {
 
 
 
-new Server().startServer();
+new App().startServer();
 

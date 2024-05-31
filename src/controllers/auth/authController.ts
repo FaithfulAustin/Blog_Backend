@@ -4,7 +4,7 @@ import AuthService from "../../services/Auth.services";
 import { StatusCodes } from "http-status-codes";
 import HttpResponse from "../../response/HttpResponse";
 import { PasswordDto, EmailDto } from "../../dto/SiginUpDto";
-import Password from "../../model/Password";
+import Password from "../../model/password.model";
 import HttpException from "../../error/HttpException";
 
 

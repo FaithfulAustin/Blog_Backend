@@ -1,6 +1,5 @@
-import mongoose, { CallbackWithoutResultAndOptionalError, Schema, model } from "mongoose";
-import User from "../Interface/user.Interface";
-
+import mongoose, { Document, Schema, model } from "mongoose";
+import User from "../interface/user.interface"
 
 // import bcrypt from "bcrypt"
 
@@ -9,6 +8,7 @@ const userSchema = new Schema<User>({
         type: String,
         required: false,
     },
+    username: String,
     last_name: {
         type: String,
         required: false,
@@ -57,6 +57,12 @@ const userSchema = new Schema<User>({
             ref: "Category",
         },
     ],
+    bookmarks: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Category",
+        },
+    ]
 })
 
 const UserModel = model<User>("users", userSchema)

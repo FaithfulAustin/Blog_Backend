@@ -1,12 +1,21 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true,
-        "target": "ES2017",
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "rootDir": "./src","noImplicitAny": true,"noUncheckedIndexedAccess": true,
-        "outDir": "dist",
-        "esModuleInterop": true,
-        "moduleResolution": "Node10"
-    }
-}
+      "experimentalDecorators": true,
+      "target": "es2017",
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "strictPropertyInitialization": false,
+      "strict": true, 
+      "outDir": "./dist",
+      "rootDir": "src",
+      "noImplicitAny": true,
+    },
+    "include": [
+      "src/**/*",
+      "env.d.ts"
+      ],
+    "exclude": [
+      "node_modules"
+    ]
+  }

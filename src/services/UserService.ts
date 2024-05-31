@@ -1,18 +1,18 @@
 import { StatusCodes } from "http-status-codes";
-import User from "../Interface/user.Interface";
-import UserModel from "../model/UserModel";
+import User from "../interface/user.interface";
+import UserModel from "../model/user.model";
 import HttpException from "../error/HttpException";
 import Jwt from "../utils/jwt";
 import { categoryUserDto } from "../dto/CategoryDto"
-import Category from "../model/Category";
+import Category from "../model/category.model";
 import { userDto } from "../dto/UserDto";
-import category from "../model/Category";
+import CategoryModel from "../model/category.model";
 
 
 export default class UserService {
 
     private user = UserModel
-    private Category = category
+    private Category = CategoryModel
 
     //    public async getUserProfile(email:string){
     //         const user = await this.user.findById(userId);

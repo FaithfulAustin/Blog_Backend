@@ -1,4 +1,4 @@
-import Category from "../model/Category";
+import Category from "../model/category.model";
 import HttpException from "../error/HttpException"
 import { StatusCodes } from "http-status-codes"
 import { categoryDto } from "../dto/CategoryDto"
