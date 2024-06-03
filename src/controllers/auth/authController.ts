@@ -1,6 +1,6 @@
 
 import { NextFunction, Request, Response } from "express";
-import AuthService from "../../services/Auth.services";
+import AuthService from "../../services/auth.service";
 import { StatusCodes } from "http-status-codes";
 import HttpResponse from "../../response/HttpResponse";
 import { PasswordDto, EmailDto } from "../../dto/SiginUpDto";

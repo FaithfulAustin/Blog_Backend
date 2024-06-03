@@ -1,6 +1,6 @@
 
 import { NextFunction, Request, Response } from "express";
-import CategoryService from "../../services/CategoryService";
+import CategoryService from "../../services/category.service";
 import { StatusCodes } from "http-status-codes";
 import HttpResponse from "../../response/HttpResponse";
 import { categoryDto } from "../../dto/CategoryDto"

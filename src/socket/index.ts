@@ -1,21 +1,23 @@
 import { IncomingMessage, Server, ServerResponse } from "http";
-import socketServer, { Socket } from "socket.io"
+import { Server as SocketServer, Socket } from "socket.io"
 import Jwt from "../utils/jwt";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
+import SocketUserGuard from "../guard/socket-user.guard";
+import { ExtendedError } from "socket.io/dist/namespace";
 
 
-interface CustomSocket extends socketServer.Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap> {
+interface CustomSocket extends Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap> {
     user: string;
 }
 
 export default async function createSocket(server: Server<typeof IncomingMessage, typeof ServerResponse>) {
-    const io = new socketServer.Server(server, {
+    const io = new SocketServer(server, {
         cors: {
             origin: 'http://localhost:5174',
         },
     })
 
-    io.use((socket, next) => {
+    io.use(async (socket, next) => {
         const customSocket = socket as CustomSocket;
 
         const token = socket.handshake.auth.token;
@@ -24,6 +26,11 @@ export default async function createSocket(server: Server<typeof IncomingMessage
         }
 
         const { value } = Jwt.verifyJwt(token)
+        try {
+            await SocketUserGuard.isExist(value)
+        } catch (err) {
+            next(err as ExtendedError)
+        }
         customSocket.user = value as unknown as string;
         next();
     });
@@ -32,13 +39,14 @@ export default async function createSocket(server: Server<typeof IncomingMessage
         const customSocket = socket as CustomSocket;
         console.log('User connected:', customSocket.user);
 
-        console.log('A user connected');
-
         socket.on('disconnect', () => {
             console.log('User disconnected');
         });
-        socket.on('post', (post) => {
-            // console.log(post);
+        socket.on('post', async (postId: string, content: string) => {
+            setTimeout(() => {
+                socket.emit('post', { message: 'Note saved successfully', content: "hi" });
+            }, 3000);
+
         });
     });
 }
