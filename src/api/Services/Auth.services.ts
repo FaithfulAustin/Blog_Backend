@@ -19,7 +19,7 @@ export default class AuthService {
   message += "Welcome 🤗!!"
   }else{
   message += "Welcome back!!"
-account.isNew = false
+account.isNewStatus = false
 account.save()
   }
  const password = await generatePassword(email,message)

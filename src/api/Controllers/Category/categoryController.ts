@@ -20,11 +20,10 @@ export default class categoryController{
         next: NextFunction
     ) => {
         try {
-            const user = request
-            const data = await this.categoryService.getCategory()
+            const data = await this.categoryService.getCategory();
             return response 
                 .status(StatusCodes.OK)
-                .send(new HttpResponse("success", "Address retrieved", data));
+                .send(new HttpResponse("success", "Lists Of Categories", data));
         
 
         } catch (err: unknown) {

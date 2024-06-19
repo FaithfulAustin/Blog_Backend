@@ -25,7 +25,7 @@ const userSchema = new Schema<User>({
         type: String,
         required: true
     },
-    isNew: {
+    isNewStatus: {
         type: Boolean,
         default: true,
     },
