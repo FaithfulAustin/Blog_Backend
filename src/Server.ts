@@ -1,49 +1,66 @@
-import express,{NextFunction, Request,Response} from "express"
-import { Route } from "./api/Interface/route.interface";
+import express, { NextFunction, Request, Response } from "express"
+import { Route } from "./interface/route.interface";
 import { connectDB } from ".";
-import authRouter from "./api/route/AuthRoute";
-import categoryRouter from "./api/route/CategoryRoute";
-import UserRoute from "./api/route/UserRoute";
+import authRouter from "./route/AuthRoute";
+import categoryRouter from "./route/CategoryRoute";
+import UserRoute from "./route/UserRoute";
+import ErrorMiddleWare from "./middleware/error.middleware";
+import cors from "cors"
+import { createServer, IncomingMessage, Server, ServerResponse } from "http";
+import createSocket from "./socket";
+import { PORT } from "./config";
 
-const port = 3000;
+export class App {
 
-export class Server {
-  
     private app = express();
+    public port: string | number;
+    private server: Server<typeof IncomingMessage, typeof ServerResponse>;
+
+    constructor() {
+        this.app = express();
+        this.port = PORT || 3000;
+        this.server = createServer(this.app)
+        createSocket(this.server)
+    }
 
     startServer() {
-
-        this.app.use(function (req: Request, res: Response, next: NextFunction) {
-            res.header("Access-Control-Allow-Origin", "http://localhost:5174"); 
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            next();
-        });
+        this.app.use(cors<Request>());
         this.app.use(express.json())
         this.app.use('/auth', authRouter)
-        this.app.use('/user',UserRoute)
+        this.app.use('/user', UserRoute)
         this.app.use('/Category', categoryRouter)
 
-        
-        //this prints the error in the console, rather than in the response!
-        this.app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-            console.error(err.stack)
-            res.send(err.message)
-            next();
-        })
 
-        this.app.listen(port, () => {
+        //this prints the error in the console, rather than in the response!
+        // this.app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+        //     console.error(err.stack)
+        //     res.send(err.message)
+        //     next();
+        // })
+
+        this.initializeErrorHandling();
+        this.initializeMiddlewares();
+
+        this.server.listen(this.port, () => {
             this.DBconnection()
-            console.log('Listening on port ' + port)
+            console.log('Listening on port ' + this.port)
         })
     }
- 
 
 
+    private initializeErrorHandling() {
+        this.app.use(ErrorMiddleWare.handleErrors);
+    }
 
-   private async DBconnection() { connectDB() }
+    private initializeMiddlewares(): void {
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
+    }
 
+    private async DBconnection() { connectDB() }
 }
 
 
 
-new Server().startServer();
+new App().startServer();
+
