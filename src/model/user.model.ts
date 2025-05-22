@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema, model } from "mongoose";
-import User from "../Interface/user.Interface"
+import User from "../interface/user.interface"
 
 // import bcrypt from "bcrypt"
 

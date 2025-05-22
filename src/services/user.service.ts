@@ -25,7 +25,6 @@ export default class UserService {
         return account;
     }
 
-
     public async updateUserProfile(email: string, update: userDto) {
 
         const account = await this.findByEmail(email);
@@ -34,8 +33,6 @@ export default class UserService {
 
         return data;
     }
-
-
 
     public async addCategoriesToUser(Categories: categoryUserDto, email: string) {
 
@@ -153,8 +150,6 @@ export default class UserService {
     }
 
     public async findByEmail(email: string) {
-        // const account = await this.user.findOne({ email },null,{populate:['following']})
-        
         const account = await this.user.findOne({ email })
         if (!account) throw new HttpException(StatusCodes.NOT_FOUND, "account not found");
         return account;
