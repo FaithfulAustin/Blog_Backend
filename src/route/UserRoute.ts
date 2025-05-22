@@ -1,5 +1,5 @@
 import { Router } from "express";
-import userController from "../Controllers/User/userController";
+import userController from "../controllers/User/userController";
 import JWTValidator from "../middleware/JWTVaildator"
 
 
