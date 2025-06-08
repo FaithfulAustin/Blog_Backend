@@ -3,6 +3,7 @@ import { Route } from "./interface/route.interface";
 import { connectDB } from ".";
 import authRouter from "./route/AuthRoute";
 import categoryRouter from "./route/CategoryRoute";
+import postRouter from "./route/PostRoute";
 import UserRoute from "./route/UserRoute";
 import ErrorMiddleWare from "./middleware/error.middleware";
 import cors from "cors"
@@ -29,6 +30,7 @@ export class App {
         this.app.use('/auth', authRouter)
         this.app.use('/user', UserRoute)
         this.app.use('/Category', categoryRouter)
+        this.app.use('/post', postRouter)
 
 
         //this prints the error in the console, rather than in the response!

@@ -27,7 +27,7 @@ export const generatePassword = async (email:string,message:string)  => {
         from: process.env.EMAIL_USER,
         to: email,
         subject: `${message} `,
-        text: `Your temporary password is: ${generatedPassword}.`,
+        text: `Your temporary password is: ${generatedPassword}`,
     });
 
     console.log(generatedPassword)

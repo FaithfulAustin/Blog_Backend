@@ -30,4 +30,21 @@ export default class PostService {
 
          return {isSaved:true, postId:savedPost._id}
     }
+
+    public async getAllPostUserId(id: string) {
+        const userId = await this.userModel.findById(id);
+        if (!userId) throw new HttpException(StatusCodes.NOT_FOUND, "account not found");
+
+        const post = await this.postModel.find({author:userId})
+        if (!post) throw new HttpException(StatusCodes.NOT_FOUND, "Posts not found");
+
+        return post;
+    }
+
+    public async getPostById(id: string) {
+        const post = await this.postModel.findById(id);
+        if (!post) throw new HttpException(StatusCodes.NOT_FOUND, "post not found");
+        return post;
+    }
+
 }
