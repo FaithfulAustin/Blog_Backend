@@ -7,7 +7,7 @@ export class categoryDto {
     @IsString()
     categoryName!: string
 }
-export class categoryUserDto {
+export class categoryArrayDto {
     
     @IsNotEmpty()
     @IsArray()

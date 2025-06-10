@@ -3,8 +3,7 @@ import User from "../interface/user.interface";
 import UserModel from "../model/user.model";
 import HttpException from "../error/HttpException";
 import Jwt from "../utils/jwt";
-import { categoryUserDto } from "../dto/CategoryDto"
-import Category from "../model/category.model";
+import { categoryArrayDto } from "../dto/CategoryDto"
 import { userDto } from "../dto/UserDto";
 import CategoryModel from "../model/category.model";
 
@@ -12,7 +11,7 @@ import CategoryModel from "../model/category.model";
 export default class UserService {
 
     private user = UserModel
-    private Category = CategoryModel
+    private category = CategoryModel
 
     //    public async getUserProfile(email:string){
     //         const user = await this.user.findById(userId);
@@ -34,9 +33,9 @@ export default class UserService {
         return data;
     }
 
-    public async addCategoriesToUser(Categories: categoryUserDto, email: string) {
+    public async addCategoriesToUser(Categories: categoryArrayDto, email: string) {
 
-        const vaildCategories = await this.Category.find({
+        const vaildCategories = await this.category.find({
             _id: { $in: Categories.categoriesId }
         })
         console.log(vaildCategories);

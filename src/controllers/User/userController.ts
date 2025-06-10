@@ -3,7 +3,7 @@ import UserService from "../../services/user.service";
 import HttpException from "../../error/HttpException";
 import { StatusCodes } from "http-status-codes";
 import HttpResponse from "../../response/HttpResponse";
-import { categoryUserDto } from "../../dto/CategoryDto"
+import { categoryArrayDto } from "../../dto/CategoryDto"
 import { userDto } from "../../dto/UserDto";
 
 
@@ -58,7 +58,7 @@ export default class UserController {
 
         try {
             const email = request.userAuth
-            const update: categoryUserDto = request.body
+            const update: categoryArrayDto = request.body
             const data = await this.userService.addCategoriesToUser(update, email)
             return response.status(StatusCodes.OK).send(new HttpResponse("success", "categories Added", data))
 

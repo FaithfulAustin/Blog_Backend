@@ -2,10 +2,15 @@ import { StatusCodes } from "http-status-codes";
 import HttpException from "../error/HttpException";
 import PostModel from "../model/post.model";
 import UserModel from "../model/user.model";
+import { categoryArrayDto } from "../dto/CategoryDto"
+import CategoryModel from "../model/category.model";
+
 
 export default class PostService {
     private postModel = PostModel
     private userModel = UserModel
+    private categoryModel = CategoryModel
+
 
     public async createPost(postId: string, email: string, content: string) {
         const foundUser = await this.userModel.findOne({ email })
@@ -44,6 +49,22 @@ export default class PostService {
     public async getPostById(id: string) {
         const post = await this.postModel.findById(id);
         if (!post) throw new HttpException(StatusCodes.NOT_FOUND, "post not found");
+        return post;
+    }
+
+    public async addCategoriesToPost(postId: string, categories: categoryArrayDto,) {
+       
+    
+        const vaildCategories = await this.categoryModel.find({
+            _id: { $in: categories.categoriesId }
+        })
+
+        if (vaildCategories.length !== categories.categoriesId.length) {
+            throw new HttpException(StatusCodes.NOT_FOUND, "One of the Ids of the categories does not exist");
+        }
+        const post = await this.postModel.findByIdAndUpdate(postId,{$addToSet:{topic:categories.categoriesId}},{new:true});
+        if (!post) throw new HttpException(StatusCodes.INTERNAL_SERVER_ERROR, "an error occurred");
+        
         return post;
     }
 
