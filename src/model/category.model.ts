@@ -1,5 +1,11 @@
 import mongoose, { Schema } from 'mongoose';
-import ICategory from '../interface/category.interface'
+// import ICategory from '../interface/category.interface'
+
+interface ICategory {
+    categoryName: string;
+    posts:string[];
+
+}
 
 const CategorySchema: Schema<ICategory> = new Schema({
     categoryName: { type: String, required: true },
