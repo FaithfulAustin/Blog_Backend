@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import CategoryController from "../Controllers/Category/categoryController";
+import CategoryController from "../controllers/Category/categoryController";
 import JWTValidator from "../middleware/JWTVaildator";
 
 const categoryController: CategoryController = new CategoryController();
