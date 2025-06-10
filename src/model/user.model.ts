@@ -1,8 +1,25 @@
 import mongoose, { Document, Schema, model } from "mongoose";
-import User from "../interface/user.interface"
+// import User from "../interface/user.interface"
 
 // import bcrypt from "bcrypt"
-
+interface User {
+    first_name: string;
+    last_name: string;
+    bio: string;
+    email: string;
+    profile_pic?: string;
+    isNewStatus:boolean;
+    isVerified:boolean;
+    last_auth_type: "google" | "native";
+    reseTokenExpiration:Date;
+    googleId: String;
+    joinedAt: Date;
+    following: String[];
+    followers: String[];
+    category:string[];
+    username?:string
+    bookmarks: String[];
+} 
 const userSchema = new Schema<User>({
     first_name: {
         type: String,
