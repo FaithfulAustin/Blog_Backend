@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express"
-import { Route } from "./interface/route.interface";
+// import { Route } from "./interface/route.interface";
 import { connectDB } from ".";
 import authRouter from "./route/AuthRoute";
 import categoryRouter from "./route/CategoryRoute";
