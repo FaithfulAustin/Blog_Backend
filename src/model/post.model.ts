@@ -5,6 +5,7 @@ import IPost from '../interface/post.interface';
 const PostSchema: Schema = new Schema<IPost>({
   title: { type: String, default: "" },
   content: { type: String, default: "" },
+  publish: { type: Boolean, default: false },
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],

@@ -67,5 +67,24 @@ export default class PostService {
         
         return post;
     }
+ public async publishPost(postId: string, email: string,) {
+       
+    
+  
+    const postID = await this.postModel.findById(postId);
+        if (!postID) throw new HttpException(StatusCodes.NOT_FOUND, "Post not found"); 
+        
+// knowing the logged in user
+        const user = await this.userModel.findOne({ email })
+        if (!user) throw new HttpException(StatusCodes.NOT_FOUND, "account not found");
 
+// Making sure the logged in user is the made the post
+        if(user.id !== postID.author)throw new HttpException(StatusCodes.BAD_REQUEST, "The user should be the author");
+
+//Changing the state of publish
+        const post = await this.postModel.findByIdAndUpdate(postID,{ publish:true},{new:true});
+        if (!post) throw new HttpException(StatusCodes.INTERNAL_SERVER_ERROR, "an error occurred");
+        
+        return post;
+    }
 }
